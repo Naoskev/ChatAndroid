@@ -26,6 +26,16 @@
             android:name=".ui.activity.DashboardActivity"
             android:label="@string/title_activity_dashboard" >
         </activity>
+
+        <service
+            android:name=".service.ChatService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+        <service
+            android:name=".service.ChatIntentService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
