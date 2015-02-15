@@ -19,20 +19,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.Logged_activity"
-            android:label="@string/title_activity_logged_activity" >
-        </activity>
-        <activity
             android:name=".ui.DrawActivity"
             android:label="@string/title_activity_draw" >
         </activity>
         <activity
             android:name=".ui.DashboardActivity"
             android:label="@string/title_activity_dashboard" >
-        </activity>
-        <activity
-            android:name=".ui.SendMessageActivity"
-            android:label="@string/title_activity_send_message" >
         </activity>
     </application>
 
