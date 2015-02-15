@@ -4,7 +4,12 @@
     tools:context="com.mines_nantes.utilisateur.chat.ui.activity.DashboardActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/drawing" android:title="Dessin">
 
-    </item>
+    <item android:id="@+id/drawing"
+        android:title="@string/drawing"
+        android:icon="@drawable/abc_edit_text_material"/>
+
+    <item android:id="@+id/disconnect"
+        android:title="@string/disconnect"
+        />
 </menu>

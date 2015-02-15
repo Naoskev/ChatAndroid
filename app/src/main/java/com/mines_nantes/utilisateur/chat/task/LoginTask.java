@@ -6,23 +6,15 @@ import android.util.Log;
 import com.mines_nantes.utilisateur.chat.listener.LoginListener;
 import com.mines_nantes.utilisateur.chat.utils.SharedData;
 
-import org.apache.http.HttpHost;
-import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.HttpContext;
-
-import java.io.IOException;
 
 /**
  * Created by Utilisateur on 20/01/2015.
+ * Service de lié à l'activité de login
  */
 public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
@@ -50,10 +42,10 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
     protected Boolean doInBackground(String... params) {
         Log.i(this.getClass().getSimpleName(), "doInBackground");
 
-        if (params[0] == SharedData.LOGIN) {
+        if (params[0].equals(SharedData.LOGIN)) {
             return login(params);
-        } else if (params[0] == SharedData.REGISTER) {
-
+        } else if (params[0].equals(SharedData.REGISTER)) {
+            return register(params);
         }
         return false;
     }
@@ -80,9 +72,9 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
             HttpClient client = new DefaultHttpClient();
             Log.i(this.getClass().getSimpleName(), "creation client http");
 
-            HttpGet get = new HttpGet(BASE_URL+ REGISTER_URL +params[1]+"/"+params[2]);
-            get.setHeader("Content-type", "application/json");
-            HttpResponse response = client.execute(get);
+            HttpPost post = new HttpPost(BASE_URL+ REGISTER_URL +params[1]+"/"+params[2]);
+            post.setHeader("Content-type", "application/json");
+            HttpResponse response = client.execute(post);
             Log.i(this.getClass().getSimpleName(), response.toString());
             return response.getStatusLine().getStatusCode() == 200;
 

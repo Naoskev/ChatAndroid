@@ -7,6 +7,7 @@ import com.mines_nantes.utilisateur.chat.model.User;
 
 /**
  * Created by Utilisateur on 15/02/2015.
+ * Données communes.
  */
 public class SharedData {
 
@@ -45,5 +46,10 @@ public class SharedData {
             user = new User(sp.getString(PREF_LOGIN, ""),sp.getString(PREF_PASSWORD, ""));
         }
         return user;
+    }
+
+    public void removeUser(Activity activity){
+        SharedPreferences sp = activity.getSharedPreferences(PREFERENCES, Activity.MODE_PRIVATE);
+        sp.edit().clear().commit();
     }
 }

@@ -16,5 +16,8 @@
     <string name="title_activity_draw">DrawActivity</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_activity_send_message">SendMessageActivity</string>
+    <string name="disconnect">Déconnexion </string>
+    <string name="drawing">Dessin</string>
+    <string name="label_menu">Menu</string>
 
 </resources>

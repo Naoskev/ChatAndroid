@@ -7,13 +7,15 @@
     android:orientation="vertical"
     tools:context="com.mines_nantes.utilisateur.chat.ui.activity.DashboardActivity">
 
-    <TextView android:text="Hello"
+    <TextView
+        android:text="@string/title_activity_dashboard"
         android:id="@+id/title_send_message"
         android:layout_width="match_parent"
-        android:padding="5dp"
+        android:padding="2dp"
         android:background="@android:color/holo_red_dark"
-        android:textSize="25dp"
-        android:layout_height="wrap_content" />
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:onClick="startDrawing"/>
 
     <ListView
         android:layout_marginTop="5dp"
@@ -21,7 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/sending_footer"
-        android:layout_below="@+id/title_send_message">
+        android:layout_below="@+id/title_send_message"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll">
         </ListView>
 
     <LinearLayout
