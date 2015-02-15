@@ -14,7 +14,9 @@ public class SharedData {
     public static final String REGISTER = "REGISTER";
     public static final String LOGIN = "LOGIN";
 
+
     private static SharedData instance;
+    private String userLogin;
 
     private SharedData(){
     }
@@ -36,6 +38,7 @@ public class SharedData {
         sp.edit().putString(PREF_LOGIN, user.getLogin())
                 .putString(PREF_PASSWORD, user.getPassword())
                 .commit();
+        userLogin = user.getLogin();
     }
 
     public User getUser(Activity activity){
@@ -51,5 +54,9 @@ public class SharedData {
     public void removeUser(Activity activity){
         SharedPreferences sp = activity.getSharedPreferences(PREFERENCES, Activity.MODE_PRIVATE);
         sp.edit().clear().commit();
+    }
+
+    public String getUserLogin(){
+        return this.userLogin;
     }
 }

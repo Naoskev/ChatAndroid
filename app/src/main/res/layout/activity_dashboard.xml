@@ -12,7 +12,7 @@
         android:id="@+id/title_send_message"
         android:layout_width="match_parent"
         android:padding="2dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@color/chat_dark"
         android:textSize="15dp"
         android:layout_height="wrap_content"
         android:onClick="startDrawing"/>
@@ -47,7 +47,7 @@
             android:id="@+id/button_send_message"
             android:layout_margin="5dp"
             android:padding="2dp"
-            android:background="@color/chat_blue"
+            android:background="@color/chat_light"
             android:text="@string/send_message"
             android:textAlignment="center"
             android:layout_weight="1"

@@ -6,8 +6,10 @@
         android:orderInCategory="100" app:showAsAction="never" />
 
     <item android:id="@+id/drawing"
-        android:title="@string/drawing"
-        android:icon="@drawable/abc_edit_text_material"/>
+        android:title="@string/drawing"/>
+
+    <item android:id="@+id/refresh_button"
+        android:title="@string/label_refresh"/>
 
     <item android:id="@+id/disconnect"
         android:title="@string/disconnect"

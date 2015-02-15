@@ -2,6 +2,7 @@ package com.mines_nantes.utilisateur.chat.adapter;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.mines_nantes.utilisateur.chat.R;
 import com.mines_nantes.utilisateur.chat.model.Message;
+import com.mines_nantes.utilisateur.chat.utils.SharedData;
 
 import java.util.List;
 
@@ -70,6 +72,10 @@ public class MessageAdapter implements ListAdapter {
     public View getView(int position, View convertView, ViewGroup parent){
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View messageView = layoutInflater.inflate(R.layout.single_message_layout, parent, false);
+
+        if(messageList.get(position).getLogin().equals(SharedData.getInstance().getUserLogin())){
+            messageView.setBackgroundColor(Color.rgb(144,238,144));
+        }
 
         TextView loginTextView = (TextView) messageView.findViewById(R.id.message_login);
         TextView messageTextView = (TextView) messageView.findViewById(R.id.message_text);

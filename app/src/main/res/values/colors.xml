@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="chat_red">#ffff2723</color>
-    <color name="chat_blue">#ff2e2dff</color>
+    <color name="chat_dark">#5a264967</color>
+    <color name="chat_light">#5a2e00ad</color>
 
 </resources>

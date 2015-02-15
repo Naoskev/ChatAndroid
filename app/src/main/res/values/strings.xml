@@ -14,10 +14,11 @@
     <string name="title_activity_logged_activity">Logged_activity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_draw">DrawActivity</string>
-    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_activity_dashboard">Chat 2.0</string>
     <string name="title_activity_send_message">SendMessageActivity</string>
     <string name="disconnect">Déconnexion </string>
     <string name="drawing">Dessin</string>
     <string name="label_menu">Menu</string>
+    <string name="label_refresh">Actualiser</string>
 
 </resources>

@@ -15,7 +15,7 @@
         android:textStyle="bold"
         android:padding="10dp"
         android:layout_marginBottom="15dp"
-        android:background="@color/chat_red"/>
+        android:background="@color/chat_dark"/>
 
     <LinearLayout
         android:id="@+id/form"
@@ -65,7 +65,7 @@
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/chat_blue"/>
+            android:background="@color/chat_light"/>
 
         <Button
             android:text="@string/button_register"
@@ -73,7 +73,7 @@
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/chat_red"/>
+            android:background="@color/chat_dark"/>
 
     </LinearLayout>
 
