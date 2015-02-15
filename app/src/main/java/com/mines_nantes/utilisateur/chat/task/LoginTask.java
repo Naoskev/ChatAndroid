@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.mines_nantes.utilisateur.chat.listener.LoginListener;
+import com.mines_nantes.utilisateur.chat.utils.SharedData;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
@@ -25,7 +26,10 @@ import java.io.IOException;
  */
 public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
-    private static String BASE_URL = "http://training.loicortola.com/parlez-vous-android/connect";
+    private static String BASE_URL = "http://training.loicortola.com/parlez-vous-android/";
+    private static String CONNECT_URL = "connect/";
+    private static String REGISTER_URL = "register/";
+
     private LoginListener listener;
 
     public LoginTask(LoginListener list){
@@ -46,12 +50,37 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
     protected Boolean doInBackground(String... params) {
         Log.i(this.getClass().getSimpleName(), "doInBackground");
 
+        if (params[0] == SharedData.LOGIN) {
+            return login(params);
+        } else if (params[0] == SharedData.REGISTER) {
+
+        }
+        return false;
+    }
+
+    private Boolean login(String[] params) {
         try{
             HttpClient client = new DefaultHttpClient();
             Log.i(this.getClass().getSimpleName(), "creation client http");
 
+            HttpGet get = new HttpGet(BASE_URL+ CONNECT_URL +params[1]+"/"+params[2]);
+            get.setHeader("Content-type", "application/json");
+            HttpResponse response = client.execute(get);
+            Log.i(this.getClass().getSimpleName(), response.toString());
+            return response.getStatusLine().getStatusCode() == 200;
 
-            HttpGet get = new HttpGet(BASE_URL+"/"+params[0]+"/"+params[1]);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private Boolean register(String[] params) {
+        try{
+            HttpClient client = new DefaultHttpClient();
+            Log.i(this.getClass().getSimpleName(), "creation client http");
+
+            HttpGet get = new HttpGet(BASE_URL+ REGISTER_URL +params[1]+"/"+params[2]);
             get.setHeader("Content-type", "application/json");
             HttpResponse response = client.execute(get);
             Log.i(this.getClass().getSimpleName(), response.toString());

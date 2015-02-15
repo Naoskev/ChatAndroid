@@ -10,6 +10,9 @@ import com.mines_nantes.utilisateur.chat.model.User;
  */
 public class SharedData {
 
+    public static final String REGISTER = "REGISTER";
+    public static final String LOGIN = "LOGIN";
+
     private static SharedData instance;
 
     private SharedData(){

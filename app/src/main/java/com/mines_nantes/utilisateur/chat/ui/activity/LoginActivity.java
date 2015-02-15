@@ -129,7 +129,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
     public void onLoginSuccess() {
         Log.i("OnLoginSuccess", "success");
         Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
-
+        setBusy(false);
         Intent i = new Intent(this, DashboardActivity.class);
         startActivity(i);
     }
@@ -137,6 +137,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
     @Override
     public void onLoginFail() {
         Log.i("OnLoginFail", "fail");
+        setBusy(false);
         Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
     }
 
