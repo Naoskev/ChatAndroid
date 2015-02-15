@@ -16,15 +16,11 @@ public class SharedData {
     private static SharedData instance;
 
     private SharedData(){
-
-
     }
-
 
     public static String PREFERENCES = "preferences";
     public  static String PREF_LOGIN = "stockedUser";
     public  static String PREF_PASSWORD = "stockedPass";
-
 
     public static SharedData getInstance(){
         if(instance == null){
@@ -32,7 +28,6 @@ public class SharedData {
         }
         return instance;
     }
-
 
     public void setUser(Activity activity, User user){
         SharedPreferences sp = activity.getSharedPreferences(PREFERENCES, Activity.MODE_PRIVATE);

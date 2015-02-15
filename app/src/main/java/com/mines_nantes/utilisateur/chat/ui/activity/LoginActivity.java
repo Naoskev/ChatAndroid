@@ -71,7 +71,10 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
     }
 
     private void login(){
+        loginTaskCall(SharedData.LOGIN);
+    }
 
+    private void loginTaskCall(String type) {
         if(loginTask == null){
             loginTask = new LoginTask(this);
         }else if(loginTask.getStatus().equals(AsyncTask.Status.PENDING) ||
@@ -81,35 +84,17 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
             loginTask = new LoginTask(this);
         }
 
+        setEnabledUI(false);
+
         String login = inputLogin.getText().toString();
         String password = inputPassword.getText().toString();
-        progressBar.setVisibility(View.VISIBLE);
 
-        SharedData.getInstance().setUser(this, new User(login, password));
-
-        loginTask.execute(login, password);
+        loginTask.execute(type, login, password);
         Toast.makeText(this, "Connecting", Toast.LENGTH_SHORT).show();
     }
 
     private void register(){
-
-        if(loginTask == null){
-            loginTask = new LoginTask(this);
-        }else if(loginTask.getStatus().equals(AsyncTask.Status.PENDING) ||
-                loginTask.getStatus().equals(AsyncTask.Status.RUNNING)){
-            return;
-        } else if(loginTask.getStatus().equals(AsyncTask.Status.FINISHED)) {
-            loginTask = new LoginTask(this);
-        }
-
-        String login = inputLogin.getText().toString();
-        String password = inputPassword.getText().toString();
-        progressBar.setVisibility(View.VISIBLE);
-
-        SharedData.getInstance().setUser(this, new User(login, password));
-
-        loginTask.execute(login, password);
-        Toast.makeText(this, "Registering", Toast.LENGTH_SHORT).show();
+        loginTaskCall(SharedData.REGISTER);
     }
 
     private void cancel(){
@@ -129,7 +114,13 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
     public void onLoginSuccess() {
         Log.i("OnLoginSuccess", "success");
         Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
-        setBusy(false);
+
+        // Save user local data
+        String login = inputLogin.getText().toString();
+        String password = inputPassword.getText().toString();
+        SharedData.getInstance().setUser(this, new User(login, password));
+
+        setEnabledUI(true);
         Intent i = new Intent(this, DashboardActivity.class);
         startActivity(i);
     }
@@ -137,12 +128,21 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
     @Override
     public void onLoginFail() {
         Log.i("OnLoginFail", "fail");
-        setBusy(false);
+        setEnabledUI(true);
         Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
     }
 
-    private void setBusy(Boolean isBusy){
+    private void setEnabledUI(Boolean isNotBusy) {
 
-        progressBar.setVisibility(View.GONE);
+        inputLogin.setEnabled(isNotBusy);
+        inputPassword.setEnabled(isNotBusy);
+        loginButton.setEnabled(isNotBusy);
+        registerButton.setEnabled(isNotBusy);
+
+        if (isNotBusy) {
+            progressBar.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.VISIBLE);
+        }
     }
 }
