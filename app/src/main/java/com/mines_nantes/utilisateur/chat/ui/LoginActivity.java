@@ -31,7 +31,6 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
     private SharedPreferences sp;
 
     public static String PREFERENCES = "preferences";
-    public static String LOGIN = "USERNAME";
     public  static String PREF_LOGIN = "stockedUser";
     public  static String PREF_PASSWORD = "stockedPass";
 
@@ -54,39 +53,6 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
         }
         loginButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
-
-        Log.i(this.getClass().getSimpleName(), "OnCreate");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(this.getClass().getSimpleName(), "OnPause");
-    }
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(this.getClass().getSimpleName(), "OnStop");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(this.getClass().getSimpleName(), "OnResume");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.i(this.getClass().getSimpleName(), "OnRestart");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(this.getClass().getSimpleName(), "OnDestroy");
     }
 
     @Override

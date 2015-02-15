@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -76,6 +77,8 @@ public class DashboardActivity extends Activity implements MessagesListener,View
         setContentView(R.layout.activity_dashboard);
         listView = (ListView) findViewById(R.id.messages);
         messageToSend = (EditText) findViewById(R.id.sendingText);
+        Button send = (Button) findViewById(R.id.button_send_message);
+        send.setOnClickListener(this);
 
         sp = getSharedPreferences(LoginActivity.PREFERENCES, MODE_PRIVATE);
 
