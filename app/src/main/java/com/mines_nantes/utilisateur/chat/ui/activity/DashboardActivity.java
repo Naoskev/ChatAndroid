@@ -1,11 +1,8 @@
-package com.mines_nantes.utilisateur.chat.ui;
+package com.mines_nantes.utilisateur.chat.ui.activity;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +17,6 @@ import com.mines_nantes.utilisateur.chat.model.Message;
 import com.mines_nantes.utilisateur.chat.task.MessagesTask;
 import com.mines_nantes.utilisateur.chat.task.SendMessageTask;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class DashboardActivity extends Activity implements MessagesListener,View.OnClickListener, SendingMessageListener {

@@ -1,9 +1,10 @@
-package com.mines_nantes.utilisateur.chat.view;
+package com.mines_nantes.utilisateur.chat.ui.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -19,7 +20,7 @@ public class DrawView extends SurfaceView {
 
     private static int[] COLORS = {Color.BLACK, Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY};
     private float radius;
-    private List<Circle> circles = new ArrayList<Circle>();
+    private List<Circle> circles = new ArrayList<>();
     private float coordX;
     private float coordY;
     private Paint paint = new Paint();
@@ -39,7 +40,7 @@ public class DrawView extends SurfaceView {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
 
         float x = event.getX();
         float y = event.getY();

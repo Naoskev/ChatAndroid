@@ -1,4 +1,4 @@
-package com.mines_nantes.utilisateur.chat.ui;
+package com.mines_nantes.utilisateur.chat.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;

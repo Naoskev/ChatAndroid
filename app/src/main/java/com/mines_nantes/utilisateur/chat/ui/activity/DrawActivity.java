@@ -1,10 +1,7 @@
-package com.mines_nantes.utilisateur.chat.ui;
+package com.mines_nantes.utilisateur.chat.ui.activity;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.mines_nantes.utilisateur.chat.R;
 
