@@ -25,7 +25,6 @@ import java.io.IOException;
  */
 public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
-    private static String[] LOGINS = {"abc", "abc"};
     private static String BASE_URL = "http://training.loicortola.com/parlez-vous-android/connect";
     private LoginListener listener;
 

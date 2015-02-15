@@ -4,7 +4,7 @@
     <string name="app_name">Chat</string>
     <string name="formulaire">Application de messagerie</string>
     <string name="login">Nom d\'utilisateur</string>
-    <string name="button_register">S'enregistrer</string>
+    <string name="button_register">S\'enregistrer</string>
     <string name="alert">Champs vides</string>
     <string name="button_login">Se connecter</string>
     <string name="password">Mot de passe</string>

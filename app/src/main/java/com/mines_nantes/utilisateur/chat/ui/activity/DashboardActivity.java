@@ -3,6 +3,8 @@ package com.mines_nantes.utilisateur.chat.ui.activity;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,15 +16,16 @@ import com.mines_nantes.utilisateur.chat.adapter.MessageAdapter;
 import com.mines_nantes.utilisateur.chat.listener.MessagesListener;
 import com.mines_nantes.utilisateur.chat.listener.SendingMessageListener;
 import com.mines_nantes.utilisateur.chat.model.Message;
+import com.mines_nantes.utilisateur.chat.model.User;
 import com.mines_nantes.utilisateur.chat.task.MessagesTask;
 import com.mines_nantes.utilisateur.chat.task.SendMessageTask;
+import com.mines_nantes.utilisateur.chat.utils.SharedData;
 
 import java.util.List;
 
 public class DashboardActivity extends Activity implements MessagesListener,View.OnClickListener, SendingMessageListener {
 
     private EditText messageToSend;
-    private SharedPreferences sp;
     private ListView listView;
 
     @Override
@@ -49,9 +52,10 @@ public class DashboardActivity extends Activity implements MessagesListener,View
         String msg = messageToSend.getText().toString();
 
         if(msg != null && !msg.trim().isEmpty()) {
+            User user = SharedData.getInstance().getUser(this);
             new SendMessageTask(this).execute(
-                    sp.getString(LoginActivity.PREF_LOGIN, ""),
-                    sp.getString(LoginActivity.PREF_PASSWORD, ""),
+                    user.getLogin(),
+                    user.getPassword(),
                     msg);
         }
     }
@@ -73,10 +77,9 @@ public class DashboardActivity extends Activity implements MessagesListener,View
         setContentView(R.layout.activity_dashboard);
         listView = (ListView) findViewById(R.id.messages);
         messageToSend = (EditText) findViewById(R.id.sendingText);
+
         Button send = (Button) findViewById(R.id.button_send_message);
         send.setOnClickListener(this);
-
-        sp = getSharedPreferences(LoginActivity.PREFERENCES, MODE_PRIVATE);
 
         refresh();
     }
@@ -93,8 +96,9 @@ public class DashboardActivity extends Activity implements MessagesListener,View
 
     private void refresh(){
 
+        User user = SharedData.getInstance().getUser(this);
         new MessagesTask(this).execute(
-                sp.getString(LoginActivity.PREF_LOGIN, ""),
-                sp.getString(LoginActivity.PREF_PASSWORD, ""));
+                user.getLogin(),
+                user.getPassword());
     }
 }

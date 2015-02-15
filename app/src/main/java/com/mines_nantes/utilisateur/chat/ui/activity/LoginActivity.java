@@ -2,7 +2,6 @@ package com.mines_nantes.utilisateur.chat.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +14,9 @@ import android.widget.Toast;
 
 import com.mines_nantes.utilisateur.chat.R;
 import com.mines_nantes.utilisateur.chat.listener.LoginListener;
+import com.mines_nantes.utilisateur.chat.model.User;
 import com.mines_nantes.utilisateur.chat.task.LoginTask;
+import com.mines_nantes.utilisateur.chat.utils.SharedData;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener, LoginListener {
@@ -28,13 +29,6 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
 
     private LoginTask loginTask;
 
-    private SharedPreferences sp;
-
-    public static String PREFERENCES = "preferences";
-    public  static String PREF_LOGIN = "stockedUser";
-    public  static String PREF_PASSWORD = "stockedPass";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +40,11 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
         inputPassword = (EditText) findViewById(R.id.password_edit_text);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        sp = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
-        if(sp.contains(PREF_LOGIN)){
-            inputLogin.setText(sp.getString(PREF_LOGIN, ""));
-            inputPassword.setText(sp.getString(PREF_PASSWORD, ""));
+        User user =SharedData.getInstance().getUser(this);
+        if(user != null){
+            inputLogin.setText(user.getLogin());
+            inputPassword.setText(user.getPassword());
+            login();
         }
         loginButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
@@ -70,7 +65,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
                  }
                 break;
             case R.id.button_register:
-                cancel();
+                register();
                 break;
         }
     }
@@ -89,11 +84,32 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
         String login = inputLogin.getText().toString();
         String password = inputPassword.getText().toString();
         progressBar.setVisibility(View.VISIBLE);
-        sp.edit().putString(PREF_LOGIN, login)
-                .putString(PREF_PASSWORD, password).commit();
+
+        SharedData.getInstance().setUser(this, new User(login, password));
 
         loginTask.execute(login, password);
         Toast.makeText(this, "Connecting", Toast.LENGTH_SHORT).show();
+    }
+
+    private void register(){
+
+        if(loginTask == null){
+            loginTask = new LoginTask(this);
+        }else if(loginTask.getStatus().equals(AsyncTask.Status.PENDING) ||
+                loginTask.getStatus().equals(AsyncTask.Status.RUNNING)){
+            return;
+        } else if(loginTask.getStatus().equals(AsyncTask.Status.FINISHED)) {
+            loginTask = new LoginTask(this);
+        }
+
+        String login = inputLogin.getText().toString();
+        String password = inputPassword.getText().toString();
+        progressBar.setVisibility(View.VISIBLE);
+
+        SharedData.getInstance().setUser(this, new User(login, password));
+
+        loginTask.execute(login, password);
+        Toast.makeText(this, "Registering", Toast.LENGTH_SHORT).show();
     }
 
     private void cancel(){
@@ -112,7 +128,6 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
     @Override
     public void onLoginSuccess() {
         Log.i("OnLoginSuccess", "success");
-        progressBar.setVisibility(View.GONE);
         Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
 
         Intent i = new Intent(this, DashboardActivity.class);
@@ -122,7 +137,11 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
     @Override
     public void onLoginFail() {
         Log.i("OnLoginFail", "fail");
-        progressBar.setVisibility(View.GONE);
         Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+    }
+
+    private void setBusy(Boolean isBusy){
+
+        progressBar.setVisibility(View.GONE);
     }
 }
