@@ -11,7 +11,10 @@
         android:text="@string/formulaire"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="60dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginBottom="15dp"
         android:background="@color/chat_red"/>
 
     <LinearLayout
@@ -41,11 +44,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <CheckBox
-            android:hint="@string/stay_logged"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="40dp"
@@ -57,23 +55,23 @@
 
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
-            android:text="@string/validate"
-            android:id="@+id/button_ok"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:text="@string/button_login"
+            android:id="@+id/button_login"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/chat_blue"/>
 
         <Button
-            android:text="@string/cancel"
-            android:id="@+id/button_cancel"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:text="@string/button_register"
+            android:id="@+id/button_register"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/chat_red"/>
 

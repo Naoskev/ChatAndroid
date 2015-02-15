@@ -2,13 +2,12 @@
 <resources>
 
     <string name="app_name">Chat</string>
-    <string name="formulaire">Formulaire de connexion</string>
+    <string name="formulaire">Application de messagerie</string>
     <string name="login">Nom d\'utilisateur</string>
-    <string name="cancel">Annuler</string>
+    <string name="button_register">S'enregistrer</string>
     <string name="alert">Champs vides</string>
-    <string name="validate">Ok</string>
+    <string name="button_login">Se connecter</string>
     <string name="password">Mot de passe</string>
-    <string name="stay_logged">Rester connecté ?</string>
     <string name="action_settings">Settings</string>
     <string name="message_field">Message</string>
     <string name="send_message">Envoyer</string>

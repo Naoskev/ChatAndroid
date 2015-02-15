@@ -21,7 +21,7 @@ import com.mines_nantes.utilisateur.chat.task.LoginTask;
 public class LoginActivity extends Activity implements View.OnClickListener, LoginListener {
 
     private Button loginButton;
-    private Button cancelButton;
+    private Button registerButton;
     private EditText inputLogin;
     private EditText inputPassword;
     private ProgressBar progressBar;
@@ -40,8 +40,8 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginButton = (Button) findViewById(R.id.button_ok);
-        cancelButton = (Button) findViewById(R.id.button_cancel);
+        loginButton = (Button) findViewById(R.id.button_login);
+        registerButton = (Button) findViewById(R.id.button_register);
         inputLogin = (EditText) findViewById(R.id.login_edit_text);
         inputPassword = (EditText) findViewById(R.id.password_edit_text);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -52,13 +52,13 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
             inputPassword.setText(sp.getString(PREF_PASSWORD, ""));
         }
         loginButton.setOnClickListener(this);
-        cancelButton.setOnClickListener(this);
+        registerButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.button_ok:
+            case R.id.button_login:
                 TextView alertText = (TextView) findViewById(R.id.alert_text);
                 if(!inputLogin.getText().toString().trim().isEmpty() && !inputPassword.getText().toString().trim().isEmpty()) {
 
@@ -69,7 +69,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
                     alertText.setVisibility(View.VISIBLE);
                  }
                 break;
-            case R.id.button_cancel:
+            case R.id.button_register:
                 cancel();
                 break;
         }
